@@ -1,0 +1,20 @@
+{
+  "name": "tumblr_lesson",
+  "version": "1.0.0",
+  "description": "About Tumblr OAuth Tumblr supports OAuth 1.0a, accepting parameters via the Authorization header, with the HMAC-SHA1 signature method only. There's probably already an OAuth client library for your platform.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "coffee test.coffee",
+    "express" : "coffee express.coffee"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "coffee-script": "^1.12.7",
+    "express": "^4.15.3",
+    "oauth": "^0.9.15",
+    "tumblr.js": "^1.1.1",
+    "underscore": "^1.8.3"
+  }
+}
