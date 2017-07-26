@@ -1,22 +1,20 @@
 Tumblr = require 'tumblr.js'
 _      = require "underscore"
+yaml   = require "js-yaml"
+fs     = require "fs"
+path   = require "path"
 
 class Blog
-  NAME = "some-user-name.tumblr.com"
+  unless NAME = process.argv[2]
+    throw new Error "Usage: test.coffee hogehoge.tumbler.com"
+  CREDENTIALS = yaml.load fs.readFileSync(path.resolve __dirname, "./secret.yml")
   @client= Tumblr.createClient
     returnPromises: yes
-    credentials: do ->
-      cred= _.inject ITEMS= ["consumer_key", "consumer_secret", "token", "token_secret"], (memo,item)->
-        unless memo[item]= process.env["npm_config_#{item}"]
-          throw new Error "Credential data '#{item}' not found."
-        memo
-      , {}
-      console.log cred
-      cred
+    credentials: CREDENTIALS
   @info= ->
     @client.blogInfo NAME
   @lipsum= (title, body)->
-    title= "LIPSUM2"
+    title= "LIPSUM4"
     body= """
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
 
